@@ -1,6 +1,11 @@
 require 'bigdecimal'
 require "bigdecimal/math"
 
+APP_PATH = File.dirname(__FILE__)
+$:.unshift(File.join(APP_PATH, "lib"))
+
+require "bigdecimal_compatibility"
+
 include BigMath
 
 module BigMath
@@ -42,15 +47,11 @@ def is_a_big_decimal? number
 end
 
 class Fixnum
-  def to_bd
-    BigDecimal.new(self.to_s)
-  end
+  include BigDecimalCompatible
 end
 
 class Float
-  def to_bd
-    BigDecimal.new(self.to_s)
-  end
+  include BigDecimalCompatible
 end
 
 class BigDecimal
