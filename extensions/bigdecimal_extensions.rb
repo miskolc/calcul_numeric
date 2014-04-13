@@ -3,6 +3,6 @@ class BigDecimal
   @precision = 100
 
   def humanize
-    self.to_s "F"
+    self.truncate(6).to_s "F"
   end
 end
